@@ -18,9 +18,9 @@ import (
 // 在没有任何子命令的情况下调用时的基本命令
 var rootCmd = &cobra.Command{
 	Use:   "scleaner",
-	Short: "用于清除系统中的垃圾文件",
+	Short: "用于清除系统中的无用文件",
 	Long: `Scleaner是适用于Arch Linux的CLI工具
-该程序用于清除系统中的垃圾文件`,
+该程序用于清除系统中的无用文件`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
