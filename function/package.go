@@ -56,6 +56,5 @@ func CheckPackages() {
 		// 执行卸载命令
 		uninstallArgs := []string{"-Rn", "--noconfirm", lonelyPackages}
 		RunCommand("pacman", uninstallArgs, true)
-		// fmt.Printf("卸载: %v\n", lonelyPackages)
 	}
 }
