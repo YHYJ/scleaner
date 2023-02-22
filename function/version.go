@@ -14,7 +14,7 @@ import "fmt"
 // 程序信息
 var (
 	name    string = "Scleaner"
-	version string = "v0.1.4"
+	version string = "v0.1.5"
 )
 
 // 输出程序名称
