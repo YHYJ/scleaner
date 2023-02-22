@@ -10,51 +10,57 @@ Description:
 package function
 
 import (
-	"bytes"
 	"fmt"
+	"os"
 	"os/exec"
 	"strings"
 )
 
-// 运行指定命令
-func RunCommand(command string, args []string, display bool) string {
+// 运行指定命令并获取命令输出
+func RunCommandGetReturn(command string, args []string, display bool) string {
 	// 定义命令
 	cmd := exec.Command(command, args...)
-
-	var stdin, stdout, stderr bytes.Buffer
-	cmd.Stdin = &stdin   // 标准输入
-	cmd.Stdout = &stdout // 标准输出
-	cmd.Stderr = &stderr // 标准错误
-
-	// 执行命令获取输出
-	// err := cmd.Run()
-	errS := cmd.Start()
-	errW := cmd.Wait()
-	outStr, errStr := string(stdout.Bytes()), string(stderr.Bytes())
+	// 执行命令并获取命令输出
+	output, _ := cmd.Output()
+	// 类型转换
+	result := strings.TrimRight(string(output), "\n")
 
 	// 是否打印标准输出，必须放在判断命令执行情况语句的前面
 	if display {
-		fmt.Printf("%v", outStr)
+		fmt.Printf("找到孤立依赖包：%v\n", result)
 	}
 
-	// 判断命令执行情况
-	if errS != nil || errW != nil {
-		fmt.Println(errStr)
-	}
+	return result
+}
 
-	return strings.TrimRight(outStr, "\n")
+// 运行指定命令
+func RunCommand(command string, args []string) {
+	// 定义命令
+	cmd := exec.Command(command, args...)
+	// 定义标准输入/输出/错误
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	// 执行命令
+	cmd.Run()
 }
 
 func CheckPackages() {
-	// 执行检查命令
+	// 检查命令
 	checkArgs := []string{"-Qtdq"}
-	lonelyPackages := RunCommand("pacman", checkArgs, false)
+	lonelyPackages := RunCommandGetReturn("pacman", checkArgs, false)
+
+	// Logo命令
+	mascotArgs := []string{}
+	mascot := RunCommandGetReturn("repo-elephant", mascotArgs, false)
+
 	// 检查命令结果解析
 	if lonelyPackages == "" {
-		fmt.Println("没有需要清理的包")
+		fmt.Println("\033[35m[✔]\033[0m 没有孤立的依赖包")
+		fmt.Println(mascot)
 	} else {
-		// 执行卸载命令
-		uninstallArgs := []string{"-Rn", "--noconfirm", lonelyPackages}
-		RunCommand("pacman", uninstallArgs, true)
+		// 卸载命令
+		uninstallArgs := []string{"-Rn", lonelyPackages}
+		RunCommand("pacman", uninstallArgs)
 	}
 }
