@@ -17,18 +17,13 @@ import (
 )
 
 // 运行指定命令并获取命令输出
-func RunCommandGetReturn(command string, args []string, display bool) string {
+func RunCommandGetReturn(command string, args []string) string {
 	// 定义命令
 	cmd := exec.Command(command, args...)
 	// 执行命令并获取命令输出
 	output, _ := cmd.Output()
 	// 类型转换
 	result := strings.TrimRight(string(output), "\n")
-
-	// 是否打印标准输出，必须放在判断命令执行情况语句的前面
-	if display {
-		fmt.Printf("找到孤立依赖包：%v\n", result)
-	}
 
 	return result
 }
@@ -48,11 +43,11 @@ func RunCommand(command string, args []string) {
 func CheckPackages() {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
-	lonelyPackages := RunCommandGetReturn("pacman", checkArgs, false)
+	lonelyPackages := RunCommandGetReturn("pacman", checkArgs)
 
 	// Logo命令
 	mascotArgs := []string{}
-	mascot := RunCommandGetReturn("repo-elephant", mascotArgs, false)
+	mascot := RunCommandGetReturn("repo-elephant", mascotArgs)
 
 	// 检查命令结果解析
 	if lonelyPackages == "" {
