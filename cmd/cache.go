@@ -10,7 +10,7 @@ Description: 程序子命令'cache'时执行
 package cmd
 
 import (
-	"fmt"
+	"scleaner/function"
 
 	"github.com/spf13/cobra"
 )
@@ -21,7 +21,7 @@ var cacheCmd = &cobra.Command{
 	Short: "清除软件包缓存",
 	Long:  `清除软件包的缓存，包括pip/npm/yarn`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("cache called")
+		function.CacheCleaner()
 	},
 }
 

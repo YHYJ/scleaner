@@ -18,8 +18,8 @@ import (
 // packageCmd represents the package command
 var packageCmd = &cobra.Command{
 	Use:   "package",
-	Short: "清除系统孤立依赖包",
-	Long:  `清除系统中作为依赖关系安装，但已不再被依赖的孤立包`,
+	Short: "清除孤立依赖包",
+	Long:  `清除作为依赖关系安装，但已不再被依赖的孤立包`,
 	Run: func(cmd *cobra.Command, args []string) {
 		function.CheckPackages()
 	},
