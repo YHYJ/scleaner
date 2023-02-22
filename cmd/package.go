@@ -10,8 +10,8 @@ Description: 程序子命令'package'时执行
 package cmd
 
 import (
-	"github.com/YHYJ/scleaner/function"
 	"github.com/spf13/cobra"
+	"github.com/yhyj/scleaner/function"
 )
 
 // packageCmd represents the package command

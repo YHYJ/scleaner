@@ -10,8 +10,8 @@ Description: 程序子命令'cache'时执行
 package cmd
 
 import (
-	"github.com/YHYJ/scleaner/function"
 	"github.com/spf13/cobra"
+	"github.com/yhyj/scleaner/function"
 )
 
 // cacheCmd represents the cache command
