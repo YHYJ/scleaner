@@ -19,4 +19,4 @@
 
 ---
 
-适用于Arch Linux的孤立包清除工具
+适用于Arch Linux的系统清理工具
