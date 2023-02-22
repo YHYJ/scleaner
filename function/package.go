@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-func CheckPackages() {
+func PackageCleaner() {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
 	lonelyPackages := RunCommandGetReturn("pacman", checkArgs)

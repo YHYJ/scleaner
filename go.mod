@@ -1,4 +1,4 @@
-module scleaner
+module github.com/YHYJ/scleaner
 
 go 1.20
 

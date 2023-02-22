@@ -11,8 +11,8 @@ package cmd
 
 import (
 	"fmt"
-	"scleaner/function"
 
+	"github.com/YHYJ/scleaner/function"
 	"github.com/spf13/cobra"
 )
 

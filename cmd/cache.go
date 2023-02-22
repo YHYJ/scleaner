@@ -10,8 +10,7 @@ Description: 程序子命令'cache'时执行
 package cmd
 
 import (
-	"scleaner/function"
-
+	"github.com/YHYJ/scleaner/function"
 	"github.com/spf13/cobra"
 )
 

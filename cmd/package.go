@@ -10,8 +10,7 @@ Description: 程序子命令'package'时执行
 package cmd
 
 import (
-	"scleaner/function"
-
+	"github.com/YHYJ/scleaner/function"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +20,7 @@ var packageCmd = &cobra.Command{
 	Short: "清除孤立依赖包",
 	Long:  `清除作为依赖关系安装，但已不再被依赖的孤立包`,
 	Run: func(cmd *cobra.Command, args []string) {
-		function.CheckPackages()
+		function.PackageCleaner()
 	},
 }
 
