@@ -16,19 +16,19 @@ import (
 func PackageCleaner() {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
-	lonelyPackages := RunCommandGetReturn("pacman", checkArgs)
+	lonelyPackages := RunCommandGetResult("pacman", checkArgs)
 
 	// Logo命令
 	mascotArgs := []string{}
-	mascot := RunCommandGetReturn("repo-elephant", mascotArgs)
+	mascot := RunCommandGetResult("repo-elephant", mascotArgs)
 
 	// 检查命令结果解析
 	if lonelyPackages == "" {
-		fmt.Println("\033[35m[✔]\033[0m 没有孤立的依赖包")
+		fmt.Println("\033[35m[✔]\033[0m 没有孤立依赖包")
 		fmt.Println(mascot)
 	} else {
 		// 卸载命令
 		uninstallArgs := []string{"-Rn", lonelyPackages}
-		RunCommand("pacman", uninstallArgs)
+		RunCommandGetFlag("pacman", uninstallArgs)
 	}
 }

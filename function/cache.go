@@ -11,33 +11,26 @@ package function
 
 import (
 	"fmt"
-	"os/exec"
 )
 
 func CacheCleaner() {
-	var (
-		_   string
-		err error
-	)
+	var flag bool
 	// 清除pip缓存
-	_, err = exec.LookPath("pip")
-	if err == nil {
-		pipArgs := []string{"cache", "purge"}
-		RunCommand("pip", pipArgs)
+	pipArgs := []string{"cache", "purge"}
+	flag = RunCommandGetFlag("pip", pipArgs)
+	if flag == true {
 		fmt.Printf("%7v %v\n\n", "-->", "Cleared pip cache")
 	}
 	// 清除npm缓存
-	_, err = exec.LookPath("npm")
-	if err == nil {
-		npmArgs := []string{"cache", "clean", "--force"}
-		RunCommand("npm", npmArgs)
+	npmArgs := []string{"cache", "clean", "--force"}
+	flag = RunCommandGetFlag("npm", npmArgs)
+	if flag == true {
 		fmt.Printf("%7v %v\n\n", "-->", "Cleared npm cache")
 	}
 	// 清除yarn缓存
-	_, err = exec.LookPath("yarn")
-	if err == nil {
-		yarnArgs := []string{"cache", "clean"}
-		RunCommand("yarn", yarnArgs)
+	yarnArgs := []string{"cache", "clean"}
+	flag = RunCommandGetFlag("yarn", yarnArgs)
+	if flag == true {
 		fmt.Printf("%7v %v\n\n", "-->", "Cleared yarn cache")
 	}
 }
