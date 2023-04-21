@@ -17,14 +17,14 @@ import (
 // cacheCmd represents the cache command
 var cacheCmd = &cobra.Command{
 	Use:   "cache",
-	Short: "清除软件包缓存",
-	Long:  `清除软件包的缓存，包括pip/npm/yarn`,
+	Short: "Clear Package Cache",
+	Long:  `Clear the cache of packages, including pip/npm/yarn.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		function.CacheCleaner()
 	},
 }
 
 func init() {
-	cacheCmd.Flags().BoolP("help", "h", false, "Help for cache")
+	cacheCmd.Flags().BoolP("help", "h", false, "help for cache")
 	rootCmd.AddCommand(cacheCmd)
 }

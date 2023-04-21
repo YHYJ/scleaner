@@ -17,14 +17,14 @@ import (
 // packageCmd represents the package command
 var packageCmd = &cobra.Command{
 	Use:   "package",
-	Short: "清除孤立依赖包",
-	Long:  `清除作为依赖关系安装，但已不再被依赖的孤立包`,
+	Short: "Clear Orphaned Dependencies",
+	Long:  `Purge orphaned packages that were installed as dependencies but are no longer depended on.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		function.PackageCleaner()
 	},
 }
 
 func init() {
-	packageCmd.Flags().BoolP("help", "h", false, "Help for package")
+	packageCmd.Flags().BoolP("help", "h", false, "help for package")
 	rootCmd.AddCommand(packageCmd)
 }

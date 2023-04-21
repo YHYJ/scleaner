@@ -15,17 +15,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// 在没有任何子命令的情况下调用时的基本命令
 var rootCmd = &cobra.Command{
 	Use:   "scleaner",
-	Short: "用于清除系统中的无用文件",
-	Long:  `Scleaner是适用于Arch Linux的系统清理工具`,
+	Short: "Used to clear useless files in the system",
+	Long:  `Scleaner is a system cleaning tool for Arch Linux.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
-// 由main.main调用
 func Execute() {
 	err := rootCmd.Execute()
 	if err != nil {
@@ -34,8 +32,5 @@ func Execute() {
 }
 
 func init() {
-	// 定义全局Flag
-	rootCmd.Flags().BoolP("help", "h", false, "Help for Scleaner")
-
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.scleaner.yaml)")
+	rootCmd.Flags().BoolP("help", "h", false, "help for Scleaner")
 }
