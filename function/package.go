@@ -11,12 +11,14 @@ package function
 
 import (
 	"fmt"
+	"strings"
 )
 
 func PackageCleaner() {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
 	lonelyPackages := RunCommandGetResult("pacman", checkArgs)
+	lonelyPackages = strings.Replace(lonelyPackages, "\n", " ", -1)
 
 	// Logo命令
 	mascotArgs := []string{}
