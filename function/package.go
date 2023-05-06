@@ -18,7 +18,6 @@ func PackageCleaner() {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
 	lonelyPackages := RunCommandGetResult("pacman", checkArgs)
-	lonelyPackages = strings.Replace(lonelyPackages, "\n", " ", -1)
 
 	// Logo命令
 	mascotArgs := []string{}
@@ -30,7 +29,8 @@ func PackageCleaner() {
 		fmt.Println(mascot)
 	} else {
 		// 卸载命令
-		uninstallArgs := []string{"-Rn", lonelyPackages}
-		RunCommandGetFlag("pacman", uninstallArgs)
+		uninstallArgs := []string{"-Rn"}
+		uninstallCmd := append(uninstallArgs, strings.Split(lonelyPackages, "\n")...)
+		RunCommandGetFlag("pacman", uninstallCmd)
 	}
 }
