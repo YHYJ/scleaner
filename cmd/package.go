@@ -20,11 +20,15 @@ var packageCmd = &cobra.Command{
 	Short: "Clear Orphaned Dependencies",
 	Long:  `Purge orphaned packages that were installed as dependencies but are no longer depended on.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		function.PackageCleaner()
+		// 解析参数
+		noLogoFlag, _ := cmd.Flags().GetBool("nologo")
+		function.PackageCleaner(noLogoFlag)
 	},
 }
 
 func init() {
+	packageCmd.Flags().BoolP("nologo", "n", false, "Do not display the logo")
+
 	packageCmd.Flags().BoolP("help", "h", false, "help for package")
 	rootCmd.AddCommand(packageCmd)
 }

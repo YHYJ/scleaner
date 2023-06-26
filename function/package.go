@@ -14,19 +14,20 @@ import (
 	"strings"
 )
 
-func PackageCleaner() {
+func PackageCleaner(noLogoFlag bool) {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
 	lonelyPackages := RunCommandGetResult("pacman", checkArgs)
 
-	// Logo命令
-	mascotArgs := []string{}
-	mascot := RunCommandGetResult("repo-elephant", mascotArgs)
-
 	// 检查命令结果解析
 	if lonelyPackages == "" {
 		fmt.Println("\033[35m[✔]\033[0m 没有孤立依赖包")
-		fmt.Println(mascot)
+		if !noLogoFlag {
+			// Logo命令
+			mascotArgs := []string{}
+			mascot := RunCommandGetResult("repo-elephant", mascotArgs)
+			fmt.Println(mascot)
+		}
 	} else {
 		// 卸载命令
 		uninstallArgs := []string{"-Rn"}
