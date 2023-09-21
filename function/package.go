@@ -17,7 +17,10 @@ import (
 func PackageCleaner(noLogoFlag bool) {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
-	lonelyPackages := RunCommandGetResult("pacman", checkArgs)
+	lonelyPackages, err := RunCommandGetResult("pacman", checkArgs)
+	if err != nil {
+		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+	}
 
 	// 检查命令结果解析
 	if lonelyPackages == "" {
@@ -25,7 +28,10 @@ func PackageCleaner(noLogoFlag bool) {
 		if !noLogoFlag {
 			// Logo命令
 			mascotArgs := []string{}
-			mascot := RunCommandGetResult("repo-elephant", mascotArgs)
+			mascot, err := RunCommandGetResult("repo-elephant", mascotArgs)
+			if err != nil {
+				fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+			}
 			fmt.Println(mascot)
 		}
 	} else {
