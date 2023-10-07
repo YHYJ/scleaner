@@ -29,6 +29,6 @@ var packageCmd = &cobra.Command{
 func init() {
 	packageCmd.Flags().BoolP("nologo", "n", false, "Do not display the logo")
 
-	packageCmd.Flags().BoolP("help", "h", false, "help for package")
+	packageCmd.Flags().BoolP("help", "h", false, "help for package command")
 	rootCmd.AddCommand(packageCmd)
 }

@@ -25,6 +25,6 @@ var cacheCmd = &cobra.Command{
 }
 
 func init() {
-	cacheCmd.Flags().BoolP("help", "h", false, "help for cache")
+	cacheCmd.Flags().BoolP("help", "h", false, "help for cache command")
 	rootCmd.AddCommand(cacheCmd)
 }
