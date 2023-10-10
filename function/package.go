@@ -38,6 +38,8 @@ func PackageCleaner(noLogoFlag bool) {
 		// 卸载命令
 		uninstallArgs := []string{"-Rn"}
 		uninstallCmd := append(uninstallArgs, strings.Split(lonelyPackages, "\n")...)
-		RunCommandGetFlag("pacman", uninstallCmd)
+		if err := RunCommand("pacman", uninstallCmd); err != nil {
+			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+		}
 	}
 }

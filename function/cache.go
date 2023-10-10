@@ -14,23 +14,27 @@ import (
 )
 
 func CacheCleaner() {
-	var flag bool
 	// 清除pip缓存
+	fmt.Printf("%v %v\n", "-->", "Cleaning pip cache")
 	pipArgs := []string{"cache", "purge"}
-	flag = RunCommandGetFlag("pip", pipArgs)
-	if flag == true {
-		fmt.Printf("%7v %v\n\n", "-->", "Cleared pip cache")
+	if err := RunCommand("pip", pipArgs); err != nil {
+		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
 	}
+	fmt.Println()
+
 	// 清除npm缓存
+	fmt.Printf("%v %v\n", "-->", "Cleaning npm cache")
 	npmArgs := []string{"cache", "clean", "--force"}
-	flag = RunCommandGetFlag("npm", npmArgs)
-	if flag == true {
-		fmt.Printf("%7v %v\n\n", "-->", "Cleared npm cache")
+	if err := RunCommand("npm", npmArgs); err != nil {
+		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
 	}
+	fmt.Println()
+
 	// 清除yarn缓存
+	fmt.Printf("%v %v\n", "-->", "Cleaning yarn cache")
 	yarnArgs := []string{"cache", "clean"}
-	flag = RunCommandGetFlag("yarn", yarnArgs)
-	if flag == true {
-		fmt.Printf("%7v %v\n\n", "-->", "Cleared yarn cache")
+	if err := RunCommand("yarn", yarnArgs); err != nil {
+		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
 	}
+	fmt.Println()
 }
