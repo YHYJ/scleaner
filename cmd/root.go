@@ -18,7 +18,7 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "scleaner",
 	Short: "Used to clear useless files in the system",
-	Long:  `Scleaner is a system cleaning tool for Arch Linux.`,
+	Long:  `scleaner is a system cleaning tool for Arch Linux.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -32,5 +32,5 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("help", "h", false, "help for Scleaner")
+	rootCmd.Flags().BoolP("help", "h", false, "help for scleaner")
 }
