@@ -14,7 +14,7 @@ import "fmt"
 // 程序信息
 const (
 	name    = "Scleaner"
-	version = "v0.4.0"
+	version = "v0.5.0"
 	project = "github.com/yhyj/scleaner"
 )
 
