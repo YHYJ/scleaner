@@ -58,7 +58,7 @@
 ### 当前平台
 
 ```bash
-go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/scleaner/function.buildTime=`date +%s` -X github.com/yhyj/scleaner/function.buildBy=$USER" -o scleaner main.go
+go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/scleaner/general.GitCommitHash=`git rev-parse HEAD` -X github.com/yhyj/scleaner/general.BuildTime=`date +%s` -X github.com/yhyj/scleaner/general.BuildBy=$USER" -o build/scleaner main.go
 ```
 
 ### 交叉编译
@@ -68,7 +68,7 @@ go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/scleaner/functi
 #### Linux
 
 ```bash
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/scleaner/function.buildTime=`date +%s` -X github.com/yhyj/scleaner/function.buildBy=$USER" -o scleaner main.go
+CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/scleaner/general.GitCommitHash=`git rev-parse HEAD` -X github.com/yhyj/scleaner/general.BuildTime=`date +%s` -X github.com/yhyj/scleaner/general.BuildBy=$USER" -o build/scleaner main.go
 ```
 
 > 使用`uname -m`确定硬件架构
@@ -79,7 +79,7 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s
 #### macOS
 
 ```bash
-CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/scleaner/function.buildTime=`date +%s` -X github.com/yhyj/scleaner/function.buildBy=$USER" -o scleaner main.go
+CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s -w -X github.com/yhyj/scleaner/general.GitCommitHash=`git rev-parse HEAD` -X github.com/yhyj/scleaner/general.BuildTime=`date +%s` -X github.com/yhyj/scleaner/general.BuildBy=$USER" -o build/scleaner main.go
 ```
 
 > 使用`uname -m`确定硬件架构
@@ -90,7 +90,7 @@ CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-
 #### Windows
 
 ```powershell
-CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s -w -H windowsgui -X github.com/yhyj/scleaner/function.buildTime=`date +%s` -X github.com/yhyj/scleaner/function.buildBy=$USER" -o scleaner main.go
+CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -gcflags="-trimpath" -ldflags="-s -w -H windowsgui -X github.com/yhyj/scleaner/general.GitCommitHash=`git rev-parse HEAD` -X github.com/yhyj/scleaner/general.BuildTime=`date +%s` -X github.com/yhyj/scleaner/general.BuildBy=$USER" -o build/scleaner.exe main.go
 ```
 
 > 使用`echo %PROCESSOR_ARCHITECTURE%`确定硬件架构
