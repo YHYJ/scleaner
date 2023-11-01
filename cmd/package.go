@@ -11,7 +11,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/yhyj/scleaner/function"
+	"github.com/yhyj/scleaner/cli"
 )
 
 // packageCmd represents the package command
@@ -22,7 +22,7 @@ var packageCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// 解析参数
 		noLogoFlag, _ := cmd.Flags().GetBool("nologo")
-		function.PackageCleaner(noLogoFlag)
+		cli.PackageCleaner(noLogoFlag)
 	},
 }
 

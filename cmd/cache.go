@@ -11,7 +11,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/yhyj/scleaner/function"
+	"github.com/yhyj/scleaner/cli"
 )
 
 // cacheCmd represents the cache command
@@ -20,7 +20,7 @@ var cacheCmd = &cobra.Command{
 	Short: "Clear Package Cache",
 	Long:  `Clear the cache of packages, including pip/npm/yarn.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		function.CacheCleaner()
+		cli.CacheCleaner()
 	},
 }
 
