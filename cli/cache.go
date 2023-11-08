@@ -15,8 +15,9 @@ import (
 	"github.com/yhyj/scleaner/general"
 )
 
+// CacheCleaner 清理缓存
 func CacheCleaner() {
-	// 清除pip缓存
+	// 清除 pip 缓存
 	fmt.Printf("%v %v\n", "-->", "Cleaning pip cache")
 	pipArgs := []string{"cache", "purge"}
 	if err := general.RunCommand("pip", pipArgs); err != nil {
@@ -24,7 +25,7 @@ func CacheCleaner() {
 	}
 	fmt.Println()
 
-	// 清除npm缓存
+	// 清除 npm 缓存
 	fmt.Printf("%v %v\n", "-->", "Cleaning npm cache")
 	npmArgs := []string{"cache", "clean", "--force"}
 	if err := general.RunCommand("npm", npmArgs); err != nil {
@@ -32,7 +33,7 @@ func CacheCleaner() {
 	}
 	fmt.Println()
 
-	// 清除yarn缓存
+	// 清除 yarn 缓存
 	fmt.Printf("%v %v\n", "-->", "Cleaning yarn cache")
 	yarnArgs := []string{"cache", "clean"}
 	if err := general.RunCommand("yarn", yarnArgs); err != nil {

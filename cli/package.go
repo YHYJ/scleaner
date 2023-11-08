@@ -16,6 +16,7 @@ import (
 	"github.com/yhyj/scleaner/general"
 )
 
+// PackageCleaner 清理孤立软件包
 func PackageCleaner(noLogoFlag bool) {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
