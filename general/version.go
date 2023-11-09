@@ -18,7 +18,7 @@ import (
 // 程序信息
 const (
 	Name    string = "Scleaner"
-	Version string = "v0.5.1"
+	Version string = "v0.5.2"
 	Project string = "github.com/yhyj/scleaner"
 )
 
