@@ -11,6 +11,7 @@ package cli
 
 import (
 	"fmt"
+	"os/exec"
 	"strings"
 
 	"github.com/yhyj/scleaner/general"
@@ -22,7 +23,9 @@ func PackageCleaner(noLogoFlag bool) {
 	checkArgs := []string{"-Qtdq"}
 	lonelyPackages, err := general.RunCommandGetResult("pacman", checkArgs)
 	if err != nil {
-		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+		if _, ok := err.(*exec.ExitError); !ok {
+			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+		}
 	}
 
 	// 检查命令结果解析
