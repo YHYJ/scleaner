@@ -24,19 +24,19 @@ func PackageCleaner(noLogoFlag bool) {
 	lonelyPackages, err := general.RunCommandGetResult("pacman", checkArgs)
 	if err != nil {
 		if _, ok := err.(*exec.ExitError); !ok {
-			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+			fmt.Printf(general.ErrorBaseFormat, err)
 		}
 	}
 
 	// 检查命令结果解析
 	if lonelyPackages == "" {
-		fmt.Println("\033[35m[✔]\033[0m 没有孤立依赖包")
+		fmt.Printf(general.SuccessSuffixFormat, "[✔]", " ", "没有孤立依赖包")
 		if !noLogoFlag {
 			// Logo命令
 			mascotArgs := []string{}
 			mascot, err := general.RunCommandGetResult("repo-elephant", mascotArgs)
 			if err != nil {
-				fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+				fmt.Printf(general.ErrorBaseFormat, err)
 			}
 			fmt.Println(mascot)
 		}
@@ -45,7 +45,7 @@ func PackageCleaner(noLogoFlag bool) {
 		uninstallArgs := []string{"-Rn"}
 		uninstallCmd := append(uninstallArgs, strings.Split(lonelyPackages, "\n")...)
 		if err := general.RunCommand("pacman", uninstallCmd); err != nil {
-			fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+			fmt.Printf(general.ErrorBaseFormat, err)
 		}
 	}
 }

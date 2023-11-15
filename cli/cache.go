@@ -21,7 +21,7 @@ func CacheCleaner() {
 	fmt.Printf("%v %v\n", "-->", "Cleaning pip cache")
 	pipArgs := []string{"cache", "purge"}
 	if err := general.RunCommand("pip", pipArgs); err != nil {
-		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+		fmt.Printf(general.ErrorBaseFormat, err)
 	}
 	fmt.Println()
 
@@ -29,7 +29,7 @@ func CacheCleaner() {
 	fmt.Printf("%v %v\n", "-->", "Cleaning npm cache")
 	npmArgs := []string{"cache", "clean", "--force"}
 	if err := general.RunCommand("npm", npmArgs); err != nil {
-		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+		fmt.Printf(general.ErrorBaseFormat, err)
 	}
 	fmt.Println()
 
@@ -37,7 +37,7 @@ func CacheCleaner() {
 	fmt.Printf("%v %v\n", "-->", "Cleaning yarn cache")
 	yarnArgs := []string{"cache", "clean"}
 	if err := general.RunCommand("yarn", yarnArgs); err != nil {
-		fmt.Printf("\x1b[31m%s\x1b[0m\n", err)
+		fmt.Printf(general.ErrorBaseFormat, err)
 	}
 	fmt.Println()
 }
