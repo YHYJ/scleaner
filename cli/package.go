@@ -18,6 +18,9 @@ import (
 )
 
 // PackageCleaner 清理孤立软件包
+//
+// 参数：
+//   - noLogoFlag: 是否不显示 Logo
 func PackageCleaner(noLogoFlag bool) {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
@@ -32,7 +35,7 @@ func PackageCleaner(noLogoFlag bool) {
 	if lonelyPackages == "" {
 		fmt.Printf(general.SuccessSuffixFormat, "[✔]", " ", "没有孤立依赖包")
 		if !noLogoFlag {
-			// Logo命令
+			// 输出 Logo 的命令
 			mascotArgs := []string{}
 			mascot, err := general.RunCommandGetResult("repo-elephant", mascotArgs)
 			if err != nil {
