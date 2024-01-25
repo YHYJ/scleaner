@@ -27,7 +27,7 @@ func CacheCleaner() {
 
 	// 验证 npm 缓存文件夹
 	fmt.Printf("%v %v\n", "-->", "Verify the cache folder")
-	npmArgs := []string{"cache", "clean", "verify"}
+	npmArgs := []string{"cache", "verify"}
 	if err := general.RunCommand("npm", npmArgs); err != nil {
 		fmt.Printf(general.ErrorBaseFormat, err)
 	}
