@@ -4,7 +4,7 @@ Author: YJ
 Email: yj1516268@outlook.com
 Created Time: 2023-02-21 13:51:10
 
-Description: 程序子命令'cache'时执行
+Description: 执行子命令 'cache'
 */
 
 package cmd

@@ -4,16 +4,16 @@ Author: YJ
 Email: yj1516268@outlook.com
 Created Time: 2023-02-21 14:01:12
 
-Description: 子命令`package`功能函数
+Description: 子命令 'package' 的实现
 */
 
 package cli
 
 import (
-	"fmt"
 	"os/exec"
 	"strings"
 
+	"github.com/gookit/color"
 	"github.com/yhyj/scleaner/general"
 )
 
@@ -27,28 +27,28 @@ func PackageCleaner(noLogoFlag bool) {
 	lonelyPackages, err := general.RunCommandGetResult("pacman", checkArgs)
 	if err != nil {
 		if _, ok := err.(*exec.ExitError); !ok {
-			fmt.Printf(general.ErrorBaseFormat, err)
+			color.Error.Println(err)
 		}
 	}
 
 	// 检查命令结果解析
 	if lonelyPackages == "" {
-		fmt.Printf(general.SuccessSuffixFormat, "[✔]", " ", "没有孤立依赖包")
+		color.Printf("%s %s\n", general.SuccessText("[✔]"), general.LightText("没有孤立依赖包"))
 		if !noLogoFlag {
 			// 输出 Logo 的命令
 			mascotArgs := []string{}
 			mascot, err := general.RunCommandGetResult("repo-elephant", mascotArgs)
 			if err != nil {
-				fmt.Printf(general.ErrorBaseFormat, err)
+				color.Error.Println(err)
 			}
-			fmt.Println(mascot)
+			color.Println(general.SuccessText(mascot))
 		}
 	} else {
 		// 卸载命令
 		uninstallArgs := []string{"-Rn"}
 		uninstallCmd := append(uninstallArgs, strings.Split(lonelyPackages, "\n")...)
 		if err := general.RunCommand("pacman", uninstallCmd); err != nil {
-			fmt.Printf(general.ErrorBaseFormat, err)
+			color.Error.Println(err)
 		}
 	}
 }
