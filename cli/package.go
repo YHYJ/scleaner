@@ -27,7 +27,7 @@ func PackageCleaner(noLogoFlag bool) {
 	lonelyPackages, err := general.RunCommandGetResult("pacman", checkArgs)
 	if err != nil {
 		if _, ok := err.(*exec.ExitError); !ok {
-			color.Error.Println(err)
+			color.Danger.Println(err)
 		}
 	}
 
@@ -39,7 +39,7 @@ func PackageCleaner(noLogoFlag bool) {
 			mascotArgs := []string{}
 			mascot, err := general.RunCommandGetResult("repo-elephant", mascotArgs)
 			if err != nil {
-				color.Error.Println(err)
+				color.Danger.Println(err)
 			}
 			color.Println(general.SuccessText(mascot))
 		}
@@ -48,7 +48,7 @@ func PackageCleaner(noLogoFlag bool) {
 		uninstallArgs := []string{"-Rn"}
 		uninstallCmd := append(uninstallArgs, strings.Split(lonelyPackages, "\n")...)
 		if err := general.RunCommand("pacman", uninstallCmd); err != nil {
-			color.Error.Println(err)
+			color.Danger.Println(err)
 		}
 	}
 }

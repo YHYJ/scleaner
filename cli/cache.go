@@ -20,7 +20,7 @@ func CacheCleaner() {
 	color.Printf("%s %s\n", general.NoticeText("-->"), general.LightText("Cleaning pip cache"))
 	pipArgs := []string{"cache", "purge"}
 	if err := general.RunCommand("pip", pipArgs); err != nil {
-		color.Error.Println(err)
+		color.Danger.Println(err)
 	}
 	color.Println()
 
@@ -28,7 +28,7 @@ func CacheCleaner() {
 	color.Printf("%s %s\n", general.NoticeText("-->"), general.LightText("Verify the cache folder"))
 	npmArgs := []string{"cache", "verify"}
 	if err := general.RunCommand("npm", npmArgs); err != nil {
-		color.Error.Println(err)
+		color.Danger.Println(err)
 	}
 	color.Println()
 
@@ -36,7 +36,7 @@ func CacheCleaner() {
 	color.Printf("%s %s\n", general.NoticeText("-->"), general.LightText("Cleaning yarn cache"))
 	yarnArgs := []string{"cache", "clean"}
 	if err := general.RunCommand("yarn", yarnArgs); err != nil {
-		color.Error.Println(err)
+		color.Danger.Println(err)
 	}
 	color.Println()
 }
