@@ -27,7 +27,8 @@ func PackageCleaner(noLogoFlag bool) {
 	lonelyPackages, err := general.RunCommandGetResult("pacman", checkArgs)
 	if err != nil {
 		if _, ok := err.(*exec.ExitError); !ok {
-			color.Danger.Println(err)
+			fileName, lineNo := general.GetCallerInfo()
+			color.Danger.Printf("Find orphan packages error (%s:%d): %s\n", fileName, lineNo+1, err)
 		}
 	}
 
@@ -39,7 +40,8 @@ func PackageCleaner(noLogoFlag bool) {
 			mascotArgs := []string{}
 			mascot, err := general.RunCommandGetResult("repo-elephant", mascotArgs)
 			if err != nil {
-				color.Danger.Println(err)
+				fileName, lineNo := general.GetCallerInfo()
+				color.Danger.Printf("Get logo error (%s:%d): %s\n", fileName, lineNo+1, err)
 			}
 			color.Println(general.SuccessText(mascot))
 		}
@@ -48,7 +50,8 @@ func PackageCleaner(noLogoFlag bool) {
 		uninstallArgs := []string{"-Rn"}
 		uninstallCmd := append(uninstallArgs, strings.Split(lonelyPackages, "\n")...)
 		if err := general.RunCommand("pacman", uninstallCmd); err != nil {
-			color.Danger.Println(err)
+			fileName, lineNo := general.GetCallerInfo()
+			color.Danger.Printf("CLear orphan packages error (%s:%d): %s\n", fileName, lineNo+1, err)
 		}
 	}
 }
