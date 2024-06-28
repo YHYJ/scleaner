@@ -24,7 +24,7 @@ import (
 func PackageCleaner(noLogoFlag bool) {
 	// 检查命令
 	checkArgs := []string{"-Qtdq"}
-	lonelyPackages, err := general.RunCommandGetResult("pacman", checkArgs)
+	lonelyPackages, _, err := general.RunCommandToBuffer("pacman", checkArgs)
 	if err != nil {
 		if _, ok := err.(*exec.ExitError); !ok {
 			fileName, lineNo := general.GetCallerInfo()
@@ -38,7 +38,7 @@ func PackageCleaner(noLogoFlag bool) {
 		if !noLogoFlag {
 			// 输出 Logo 的命令
 			mascotArgs := []string{}
-			mascot, err := general.RunCommandGetResult("repo-elephant", mascotArgs)
+			mascot, _, err := general.RunCommandToBuffer("repo-elephant", mascotArgs)
 			if err != nil {
 				fileName, lineNo := general.GetCallerInfo()
 				color.Printf("%s %s -> Unable to get mascot: %s\n", general.DangerText("Error:"), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
@@ -49,9 +49,9 @@ func PackageCleaner(noLogoFlag bool) {
 		// 卸载命令
 		uninstallArgs := []string{"-Rn"}
 		uninstallCmd := append(uninstallArgs, strings.Split(lonelyPackages, "\n")...)
-		if err := general.RunCommand("pacman", uninstallCmd); err != nil {
+		if err := general.RunCommandToOS("pacman", uninstallCmd); err != nil {
 			fileName, lineNo := general.GetCallerInfo()
-				color.Printf("%s %s -> Unable to clean orphan packages: %s\n", general.DangerText("Error:"), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
+			color.Printf("%s %s -> Unable to clean orphan packages: %s\n", general.DangerText("Error:"), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
 		}
 	}
 }
