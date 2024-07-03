@@ -21,7 +21,7 @@ func CacheCleaner() {
 	pipArgs := []string{"cache", "purge"}
 	if err := general.RunCommandToOS("pip", pipArgs); err != nil {
 		fileName, lineNo := general.GetCallerInfo()
-		color.Printf("%s %s -> Unable to clean pip cache: %s\n", general.DangerText("Error:"), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
+		color.Printf("%s %s %s\n", general.DangerText(general.ErrorInfoFlag), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
 	}
 	color.Println()
 
@@ -30,7 +30,7 @@ func CacheCleaner() {
 	npmArgs := []string{"cache", "verify"}
 	if err := general.RunCommandToOS("npm", npmArgs); err != nil {
 		fileName, lineNo := general.GetCallerInfo()
-		color.Printf("%s %s -> Unable to verify npm cache: %s\n", general.DangerText("Error:"), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
+		color.Printf("%s %s %s\n", general.DangerText(general.ErrorInfoFlag), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
 	}
 	color.Println()
 
@@ -39,7 +39,7 @@ func CacheCleaner() {
 	yarnArgs := []string{"cache", "clean"}
 	if err := general.RunCommandToOS("yarn", yarnArgs); err != nil {
 		fileName, lineNo := general.GetCallerInfo()
-		color.Printf("%s %s -> Unable to clean yarn cache: %s\n", general.DangerText("Error:"), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
+		color.Printf("%s %s %s\n", general.DangerText(general.ErrorInfoFlag), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
 	}
 	color.Println()
 }
