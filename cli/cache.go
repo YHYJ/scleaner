@@ -25,9 +25,18 @@ func CacheCleaner() {
 	}
 	color.Println()
 
-	// 验证 npm 缓存文件夹
-	color.Printf("%s %s\n", general.NoticeText("-->"), general.LightText("Verify the cache folder"))
-	npmArgs := []string{"cache", "verify"}
+	// 清除 pnpm 缓存
+	color.Printf("%s %s\n", general.NoticeText("-->"), general.LightText("Cleaning pnpm cache"))
+	pnpmArgs := []string{"store", "prune"}
+	if err := general.RunCommandToOS("pnpm", pnpmArgs); err != nil {
+		fileName, lineNo := general.GetCallerInfo()
+		color.Printf("%s %s %s\n", general.DangerText(general.ErrorInfoFlag), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
+	}
+	color.Println()
+
+	// 清除 npm 缓存
+	color.Printf("%s %s\n", general.NoticeText("-->"), general.LightText("Cleaning npm cache"))
+	npmArgs := []string{"cache", "verify"} // 使用更安全的命令
 	if err := general.RunCommandToOS("npm", npmArgs); err != nil {
 		fileName, lineNo := general.GetCallerInfo()
 		color.Printf("%s %s %s\n", general.DangerText(general.ErrorInfoFlag), general.SecondaryText("[", fileName, ":", lineNo+1, "]"), err)
